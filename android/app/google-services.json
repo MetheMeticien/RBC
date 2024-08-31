@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "72223686325",
+    "project_id": "rofs-blood-connect",
+    "storage_bucket": "rofs-blood-connect.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72223686325:android:ad8c9b0a38181f99c148fc",
+        "android_client_info": {
+          "package_name": "com.example.rofs_blood_connect"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_qbCv1kCcY-aIu-T89CJISfmi7PTctvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:72223686325:android:c8b48d7dcd6514b6c148fc",
+        "android_client_info": {
+          "package_name": "com.rofs.rbc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_qbCv1kCcY-aIu-T89CJISfmi7PTctvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
