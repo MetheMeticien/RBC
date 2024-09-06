@@ -44,7 +44,7 @@ class RequestModel {
     final data = document.data()!;
     return RequestModel(
       id: document.id,
-      userPhone: data["BloodGroup"],
+      userPhone: data["UserPhone"],
       district: data["District"],
       area: data["Area"],
       hospital: data["Hospital"],

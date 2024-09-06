@@ -82,4 +82,22 @@ class UserRepository extends GetxController {
     final userdata = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     return userdata;
   }
+
+  Future<UserModel?> getUserInfofromPhone(String phoneNo) async {
+
+    final snapshot = await _db
+        .collection('Users')
+        .where("Phone", isEqualTo: phoneNo)
+        .get();
+
+    if (snapshot.docs.isEmpty) {
+      if (kDebugMode) {
+        print('No such field found');
+      }
+      return null;
+    }
+
+    final userdata = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    return userdata;
+  }
 }

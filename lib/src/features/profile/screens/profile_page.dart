@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../common_widgets/screens/drawer.dart';
 import '../../../common_widgets/screens/navbar.dart';
+import '../controllers/profile_controller.dart';
 import 'package:get/get.dart';
 
 import 'edit_profile.dart';
 
-
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  ProfilePage({super.key});
+
+  final ProfileController controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -16,148 +18,109 @@ class ProfilePage extends StatelessWidget {
       appBar: RBCAppbar(),
       endDrawer: RBCDrawer(),
       body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                
-                Row(
-                  children: [
-                    Center(child: Text("My Profile"),),
-                    ElevatedButton(onPressed: (){
-                      Get.to(()=> EditProfilePage());
-                    }, child: Text("Edit")),
-                  ],
-                ),
-                const Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 80,
-                      backgroundImage: AssetImage(
-                          'assets/profile.jpg'), // Use your image asset here
-                    ),
-                    SizedBox(width: 16),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Mueed Ibne Sami',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: [
+                  const Center(child: Text("My Profile")),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(() => EditProfilePage());
+                    },
+                    child: const Text("Edit"),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  const CircleAvatar(
+                    radius: 80,
+                    backgroundImage: AssetImage('assets/profile.jpg'),
+                  ),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Obx(() => Text(
+                        controller.fullName.value,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          'AB+',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      )),
+                      Obx(() => Text(
+                        controller.bloodGroup.value,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
                         ),
-                        Text(
-                          'Last donated on:',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                      )),
+                      const Text(
+                        'Last donated on:',
+                        style: TextStyle(
+                          fontSize: 16,
                         ),
-                        Text(
-                          '02/02/2024',
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+                      ),
+                      Obx(() => Text(
+                        controller.lastDonated.value,
+                        style: const TextStyle(
+                          fontSize: 16,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
-                Center(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Have you donated in recent time?',
-                      style: TextStyle(fontSize: 16),
-                    ),
+                      )),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Have you donated in recent time?',
+                    style: TextStyle(fontSize: 16),
                   ),
                 ),
-                const SizedBox(height: 30),
-                SizedBox(
-                  height: 400,
-                  child: Container(
-                    padding: const EdgeInsets.all(16),
-                    color: Colors.red[100],
-                    child: ListView(
-                      children: const <Widget>[
-                        ProfileDetailRow(label: 'Full Name', value: 'John Doe'),
-                        ProfileDetailRow(label: 'Age', value: '21'),
-                        ProfileDetailRow(
-                            label: 'Contact', value: '01610608881'),
-                        ProfileDetailRow(
-                            label: 'Address',
-                            value:
-                                'House 71, Road-15\nSector 11, Uttara, Dhaka'),
-                        ProfileDetailRow(
-                            label: 'Date of Birth', value: '16/09/1982'),
-                        ProfileDetailRow(label: 'Gender', value: 'Male'),
-                        ProfileDetailRow(
-                            label: 'Email Address',
-                            value: 'johndoe@example.com'),
-                        ProfileDetailRow(label: 'Blood Group', value: 'O+'),
-                        ProfileDetailRow(label: 'Rh Factor', value: 'Positive'),
-                        ProfileDetailRow(
-                            label: 'Medical Conditions', value: 'None'),
-                        ProfileDetailRow(
-                            label: 'History of Blood Transfusions',
-                            value: 'None'),
-                        ProfileDetailRow(
-                            label: 'Allergies', value: 'Penicillin'),
-                        ProfileDetailRow(
-                            label: 'Current Medications', value: 'None'),
-                        ProfileDetailRow(
-                            label: 'Vaccination Status',
-                            value: 'Fully vaccinated'),
-                        ProfileDetailRow(
-                            label: 'Last Donation Date', value: '01/01/2024'),
-                        ProfileDetailRow(
-                            label: 'Donation Frequency', value: 'Regular'),
-                        ProfileDetailRow(
-                            label: 'Donation Restrictions', value: 'None'),
-                        ProfileDetailRow(
-                            label: 'Address',
-                            value:
-                                'House 71, Road-15\nSector 11, Uttara, Dhaka'),
-                        ProfileDetailRow(
-                            label: 'Preferred Donation Center',
-                            value: 'City Blood Bank'),
-                        ProfileDetailRow(
-                            label: 'Emergency Contact Name', value: 'Jane Doe'),
-                        ProfileDetailRow(
-                            label: 'Emergency Contact Phone Number',
-                            value: '01911294558'),
-                        ProfileDetailRow(
-                            label: 'Emergency Contact Relationship',
-                            value: 'Spouse'),
-                        ProfileDetailRow(
-                            label: 'Preferred Days/Times for Donation',
-                            value: 'Weekends'),
-                        ProfileDetailRow(
-                            label: 'Willingness to Travel',
-                            value: 'Within 10 km'),
-                        ProfileDetailRow(
-                            label: 'Donation Preferences',
-                            value: 'Whole blood'),
-                        ProfileDetailRow(
-                            label: 'Notes',
-                            value: 'Prefer left arm for donation')
-                      ],
-                    ),
+              ),
+              const SizedBox(height: 30),
+              SizedBox(
+                height: 400,
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  color: Colors.red[100],
+                  child: ListView(
+                    children: [
+                      Obx(() => ProfileDetailRow(
+                        label: 'Full Name',
+                        value: controller.fullName.value,
+                      )),
+                      Obx(() => ProfileDetailRow(
+                        label: 'Age',
+                        value: controller.age.value,
+                      )),
+                      Obx(() => ProfileDetailRow(
+                        label: 'Contact',
+                        value: controller.contact.value,
+                      )),
+                      Obx(() => ProfileDetailRow(
+                        label: 'Address',
+                        value: controller.address.value,
+                      )),
+                      Obx(() => ProfileDetailRow(
+                        label: 'Date of Birth',
+                        value: controller.dateOfBirth.value,
+                      )),
+                    ],
                   ),
-                )
-              ],
-            ),
-          )),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

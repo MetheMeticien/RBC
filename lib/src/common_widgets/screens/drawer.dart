@@ -4,7 +4,7 @@ import 'package:rofs_blood_connect/src/features/authentication/screens/sign_up/s
 import 'package:rofs_blood_connect/src/features/donation_request/screens/components/one_req_box.dart';
 import 'package:rofs_blood_connect/src/features/donation_request/screens/requests_list.dart';
 import 'package:rofs_blood_connect/src/repository/authentication_repo/authentication.dart';
-
+import 'package:get/get.dart';
 
 import '../../features/dashboard/screens/dashboard.dart';
 import '../../features/donation_request/screens/donor_request_page.dart';
@@ -36,11 +36,7 @@ class RBCDrawer extends StatelessWidget implements PreferredSizeWidget {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => const DashboardPage()),
-                (Route<dynamic> route) => false, // Removes all previous routes
-              );
+              Get.offAll(()=> DashboardPage());
             },
           ),
           ListTile(
@@ -54,7 +50,7 @@ class RBCDrawer extends StatelessWidget implements PreferredSizeWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
+                  builder: (context) => ProfilePage(),
                 ),
               );
             },

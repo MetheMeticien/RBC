@@ -74,4 +74,21 @@ class DonationRepository extends GetxController {
     return requests;
   }
 
+
+  Future<List<RequestModel>> getRequestsByUserPhone(String userPhone) async {
+    final snapshot = await _db.collection('DonationRequests')
+        .where('UserPhone', isEqualTo: userPhone)
+        .get();
+
+    if (snapshot.docs.isEmpty) {
+      if (kDebugMode) {
+        print('No Donation Requests found for UserPhone: $userPhone');
+      }
+      return [];
+    }
+
+    final requests = snapshot.docs.map((e) => RequestModel.fromSnapshot(e)).toList();
+    return requests;
+  }
+
 }
